@@ -10,15 +10,15 @@ def verifica(input_string):
                 if tranzitii[stare][c] != set():
                     stari_urm = stari_urm | tranzitii[stare][c]
             except KeyError:
-                raise Exception(f"Sir invalid: {input_string}") from None
+                pass
         stari_curente=stari_urm
         rez+=str(stari_urm)+", "
     if set(stari_curente) & stari_finale:
-        return True,rez
-    return False, " "
+        return True, rez
+    return False, rez
 
 
-f=open("AFN.txt","r")
+f=open("inputuri/AFN.txt","r")
 alfabet = set([str(x) for x in f.readline().strip().split()])
 stari = f.readline().strip().split()
 stare_initiala = f.readline().strip().split()
@@ -27,9 +27,9 @@ tranzitii={}
 for index,sir in enumerate(f.readlines()):
     string=sir.strip().split(sep=' ')
     tranzitii[stari[index]]={k[:k.find(':')]:set(k[k.find(':')+1:].split(",")) for k in string}
-print(tranzitii)
 
 
+print("Introduceti input")
 input_strings=input().strip().split()
 for s in input_strings:
     rez,str_rez=verifica(s)

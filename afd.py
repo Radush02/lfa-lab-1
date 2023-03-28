@@ -11,7 +11,7 @@ def verifica(input_string):
         rez+=stare_curenta+", "
     return stare_curenta in stari_finale, rez
 
-f=open("AFD.txt","r")
+f=open("inputuri/AFD.txt","r")
 alfabet = f.readline().strip().split()
 stari = f.readline().strip().split()
 stare_initiala = f.readline().strip()
