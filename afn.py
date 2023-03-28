@@ -1,5 +1,6 @@
 def verifica(input_string):
     stari_curente = set(stare_initiala)
+    rez=stare_initiala[0]+", "
     for c in input_string:
         stari_urm = set()
         if c not in alfabet:
@@ -9,11 +10,12 @@ def verifica(input_string):
                 if tranzitii[stare][c] != set():
                     stari_urm = stari_urm | tranzitii[stare][c]
             except KeyError:
-                pass
+                raise Exception(f"Sir invalid: {input_string}") from None
         stari_curente=stari_urm
+        rez+=str(stari_urm)+", "
     if set(stari_curente) & stari_finale:
-        return True
-    return False
+        return True,rez
+    return False, " "
 
 
 f=open("AFN.txt","r")
@@ -30,4 +32,8 @@ print(tranzitii)
 
 input_strings=input().strip().split()
 for s in input_strings:
-    print(f"{s}: {verifica(s)}")
+    rez,str_rez=verifica(s)
+    if rez is True:
+        print(f"{s} => Acceptat: {str_rez.strip(' ,')}")
+    else:
+        print(f"{s} => Neacceptat")
