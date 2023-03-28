@@ -6,7 +6,7 @@ def verifica(input_string):
         stare_curenta = tranzitii[stare_curenta][c]
     return stare_curenta in stari_finale
 
-f=open("input.txt","r")
+f=open("AFD.txt","r")
 alfabet = f.readline().strip().split()
 stari = f.readline().strip().split()
 stare_initiala = f.readline().strip()
@@ -17,11 +17,7 @@ for index,sir in enumerate(f.readlines()):
     tranzitii[stari[index]]={k[:k.find(':')]:k[k.find(':')+1:] for k in string}
 
 
-
 print("Introduceti input")
-print(tranzitii)
-
-#input_strings = ['fmi','ffmm','fffmmfmifmfmf','ffmmiifmii']
 input_strings=input().strip().split()
 for s in input_strings:
     print(f"{s}: {verifica(s)}")
